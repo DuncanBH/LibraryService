@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using LibraryServices.Data.Interfaces;
+using LibraryServices.Data.Models;
 using LibraryServices.Models;
 
 namespace LibraryServices.Controllers
