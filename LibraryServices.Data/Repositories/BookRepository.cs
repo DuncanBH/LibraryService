@@ -10,7 +10,7 @@ namespace LibraryServices.Data.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        public List<Book> Books = new List<Book>
+        public List<Book> books = new List<Book>
         {
             new Book {Id = 0, Title = "The Hitchhiker's Guide to the Galaxy", Author = "Douglas Adams", PublicationYear = 1979, CallNumber = "001-0001", IsAvailable = true},
             new Book {Id = 1, Title = "The Restaurant at the End of the World", Author = "Douglas Adams", PublicationYear = 1980, CallNumber = "001-0002", IsAvailable = true},
@@ -21,19 +21,42 @@ namespace LibraryServices.Data.Repositories
 
         public List<Book> GetAllBooks()
         {
-            return Books;
+            return books;
         }
 
         public Book GetBook(int id)
         {
-            var book = Books.FirstOrDefault(x => x.Id == id);
+            var book = books.FirstOrDefault(x => x.Id == id);
             return book;
         }
 
         public bool AddNewBook(Book book)
         {
-            Books.Add(book);
+            books.Add(book);
             return true;
+        }
+
+        public bool Remove(int id)
+        {
+            var book = GetBook(id);
+            if (book == null)
+            {
+                return false;
+            }
+
+            books.Remove(book);
+            return true;
+        }
+
+        public List<Book> UpdateBook(int id, Book book)
+        {
+            if (this.Remove(id))
+            {
+                this.AddNewBook(book);
+                return books;
+            }
+
+            return books;
         }
     }
 }
