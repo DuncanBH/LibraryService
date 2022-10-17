@@ -32,7 +32,8 @@ namespace LibraryServices.DependencyResolution {
                     scan.WithDefaultConventions();
                 });
             //For<IExample>().Use<Example>();
-            For<IBookRepository>().Use<BookRepository>();
+            //For<IBookRepository>().Use<BookRepository>();
+            For<IBookRepository>().Use<BookDatabase>();
         }
 
         #endregion
