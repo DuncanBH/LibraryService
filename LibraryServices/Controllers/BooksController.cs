@@ -18,12 +18,12 @@ namespace LibraryServices.Controllers
             this.books = books;
         }
 
-
+        [HttpGet]
         public IEnumerable<Book> Get()
         {
             return books.GetAllBooks();
         }
-
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             var book = books.GetBook(id);
@@ -34,6 +34,17 @@ namespace LibraryServices.Controllers
             }
 
             return Ok(book);
+        }
+        [HttpPost]
+        public IHttpActionResult PostBook(Book book)
+        {
+            bool result = books.AddNewBook(book);
+            if (result)
+            {
+                return Ok(book);
+            }
+
+            return BadRequest();
         }
     }
 }
